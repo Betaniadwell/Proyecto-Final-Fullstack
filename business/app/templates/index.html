@@ -6,8 +6,6 @@
     <title>Business</title>
     
     <style>
-
-
 a{font-family: Georgia;
     font-style:oblique;
     font-size: small;
@@ -30,20 +28,23 @@ a:hover {background-color:black ;
         transition: 0,5s all;
 }
   
-a:active {color: rgb(0, 140, 255);}
+a:active {color: rgb(0, 140, 255);
+}
   
-a:visited {color:white;}
+a:visited {color:white;
+}
   
-a:focus-visible {color:black}
+a:focus-visible {color:black
+}
 
 *{background-color: rgb(57, 68, 170);
-    margin:0 auto;
-   }
+  margin:0 auto;
+}
 
 body{ height: 1200px;
 }
 
-h1{margin-top: 30px;
+h1{margin-top: 20px;
    padding:5px;}
  
 h2 {color:darkblue;
@@ -52,6 +53,7 @@ h2 {color:darkblue;
 #wa {
     font-family: Arial, Helvetica, sans-serif;
     font-size:small;
+    font-weight: bolder;
     border-collapse: collapse;
     margin-left: auto; margin-right: auto; width: 50%;margin-top: 20px;
 }
@@ -65,42 +67,43 @@ h2 {color:darkblue;
       color: white;}
 #wa tr:hover {background-color: #ddd}
 
-.hijo { 
-position: relative;
-background-color: blueviolet;
-text-align: center;
-align-content: center;
-width:150px;
-background:linear-gradient(30deg, crimson,sienna, royalblue, indianred, purple);
-padding: 10px;
-height: 50px;
-margin-top: 80px;
-bottom: 50px;
-border-radius:40px;
-font-family: 'calibri';
-color: white;
-box-shadow: 7px 13px 37px #000;
-display:grid;
-grid-template-rows: auto auto auto;
-align-items: center;
-transition: 0,5s all;
+input {font-weight: bolder;}
 
+.hijo { 
+        position: relative;
+        background-color: blueviolet;
+        text-align: center;
+        align-content: center;
+        width:150px;
+        background:linear-gradient(30deg, crimson,sienna, royalblue, indianred, purple);
+        padding: 10px;
+        height: 50px;
+        margin-top: 80px;
+        bottom: 50px;
+        border-radius:40px;
+        font-family: 'calibri';
+        color: white;
+        box-shadow: 7px 13px 37px #000;
+        display:grid;
+        grid-template-rows: auto auto auto;
+        align-items: center;
+        transition: 0,5s all;
 
 }
 .hijo :hover {
-background-color:black ;
-color:wheat;
-border:5px blue solid ;
-border-radius: 30px;
-transition: 0,5s all;
+              background-color:black ;
+              color:wheat;
+              border:5px blue solid ;
+              border-radius: 30px;
+              transition: 0,5s all;
 }
 
 .hija{ 
-display:grid;
-grid-template-rows: auto auto auto;
-height:50px;
-border-radius:40px;
-flex-wrap: nowrap;
+      display:grid;
+      grid-template-rows: auto auto auto;
+      height:50px;
+      border-radius:40px;
+      flex-wrap: nowrap;
 
 }
 .padre{display: grid;
@@ -108,11 +111,30 @@ flex-wrap: nowrap;
        flex-wrap: nowrap;
        
 }
-    </style>
-</head>
-<body>
+
+.md {text-align: center; margin-top: 100px; margin-bottom:50px; font-size:xx-large;padding: 10px;
+}
+
+.mc {color:darkblue;text-align: center}
+
+.ms {text-align: center; padding: 20px;margin-top: 10px;}
+
+.mp {display: block;text-align: center}
+
+.mk {text-align: center; margin-top: 20px}
     
-    <h1 style="color:darkblue;text-align: center">Personal en Planta Departamento de Ventas </h1>
+    </style>
+
+</head>
+
+<body>
+    <nav>
+        <ul>
+          <li><a href="#leer">Consultas</a></li>
+        </ul>
+    </nav>
+    
+    <h1 class="mc">Personal en Planta Departamento de Ventas </h1>
     <table id= "wa">
     <thead>
         <tr>
@@ -138,9 +160,9 @@ flex-wrap: nowrap;
     </tbody>
     </table>
          
-        <h2  style="text-align: center; padding: 20px;margin-top: 10px;">Agregar un Vendedor</h2>
+        <h2 class="ms">Agregar un Vendedor</h2>
    
-          <form  style="display: block;text-align: center;" action="/create" method="post">
+          <form  class="mp" action="/create" method="post">
    <input type="text" name="nombre" placeholder="nombre">
    <input type="text" name="fecha_ing" placeholder="fecha_ing">
    <input type="text" name="zona" placeholder="zona">
@@ -151,7 +173,7 @@ flex-wrap: nowrap;
    <input type="submit" value="Create">
    </form>
 
-          <h2 style="text-align: center; padding: 5px;margin-top: 20px;"> Update/Delete datos </h2>
+          <h2 class="mk">Update/Delete datos </h2>
     
           <table>
     <thead style="display:block">
@@ -190,8 +212,9 @@ flex-wrap: nowrap;
         {% endfor %}
     </tbody>
     </table>
-
-     <h2  style="text-align: center; margin-top: 150px;font-size: large;">Consultas</h2>
+     <h2  class="md">Consultas</h2>
+     <h4 id="leer"></h4>
+     
           <div class="padre">
                 <form  class="hijo" action="/query" method="post">
                 <input class="hija" type="submit" value=" Ingresos 2024">
@@ -206,27 +229,27 @@ flex-wrap: nowrap;
                 </form>
                 
                 <form  class="hijo" action="/query3" method="post">
-                <input class="hija" type="submit" value="Ventas ">
+                <input class="hija" type="submit" value="Zona Este">
                 </form>
                
                 <form  class="hijo" action="/query4" method="post">
-                <input class="hija" type="submit" value="Sueldos > 500000">
+                <input class="hija" type="submit" value="Zona Oeste">
                 </form>
                
                 <form  class="hijo"action="/query5" method="post">
-                <input class="hija" type="submit" value="Orden por Oficinas">
+                <input class="hija" type="submit" value="Zona Norte">
                 </form>
                 
                 <form  class="hijo" action="/query6" method="post">
-                <input class="hija" type="submit" value="Orden por Oficinas">
+                <input class="hija" type="submit" value="Zona Sur">
                 </form>
                
                 <form  class="hijo" action="/query7" method="post">
-                <input class="hija" type="submit" value="Sueldos > 500000">
+                <input class="hija" type="submit" value="Venta > 100000">
                 </form>
                 
                 <form  class="hijo" action="/query8" method="post">
-                <input class="hija" type="submit" value="Orden por Oficinas">
+                <input class="hija" type="submit" value="Ventas < 10000 ">
                 </form>
             </div>   
 </body>

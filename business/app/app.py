@@ -97,7 +97,7 @@ def query3():
     conn=db_conn()
     cur=conn.cursor()
     cur.execute(
-        '''SELECT *  FROM oficina_ventas group by zona ''')
+        '''select * from oficina_ventas where zona = 'este' ''')
     data=cur.fetchall()
     conn.commit()
     return render_template ('index.html',data=data)
@@ -107,7 +107,7 @@ def query4():
     conn=db_conn()
     cur=conn.cursor()
     cur.execute(
-        '''SELECT * FROM oficina_ventas ORDER BY comisiones,nombre''')
+        '''select * from oficina_ventas where zona ='oeste' ''')
     data=cur.fetchall()
     conn.commit()
     return render_template ('index.html',data=data)
@@ -118,7 +118,7 @@ def query5():
     conn=db_conn()
     cur=conn.cursor()
     cur.execute(
-        '''SELECT * FROM oficina_ventas  WHERE salario >  500000''')
+         '''select * from oficina_ventas where zona = 'norte' ''')
     data=cur.fetchall()
     conn.commit()
     return render_template ('index.html',data=data)
@@ -128,7 +128,7 @@ def query6():
     conn=db_conn()
     cur=conn.cursor()
     cur.execute(
-        '''SELECT * FROM oficina_ventas ORDER BY zona,nombre''')
+         '''select * from oficina_ventas where zona = 'sur' ''')
     data=cur.fetchall()
     conn.commit()
     return render_template ('index.html',data=data)
@@ -138,7 +138,7 @@ def query7():
     conn=db_conn()
     cur=conn.cursor()
     cur.execute(
-        '''SELECT * FROM oficina_ventas ORDER BY zona,nombre''')
+        '''SELECT * FROM oficina_ventas WHERE total_ventas > 100000 ''')
     data=cur.fetchall()
     conn.commit()
     return render_template ('index.html',data=data)
@@ -148,7 +148,7 @@ def query8():
     conn=db_conn()
     cur=conn.cursor()
     cur.execute(
-        '''SELECT * FROM oficina_ventas ORDER BY zona,nombre''')
+        '''SELECT nombre, max(total_ventas) as ventas_netas FROM oficina_ventas group by nombre ''')
     data=cur.fetchall()
     conn.commit()
     return render_template ('index.html',data=data)
