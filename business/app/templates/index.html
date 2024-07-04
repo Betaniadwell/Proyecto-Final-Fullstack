@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Business</title>
+    
+    <style>
+
+
+a{font-family: Georgia;
+    font-style:oblique;
+    font-size: small;
+    background-color: rgb(20, 198, 230);
+    color: hwb(60 0% 93%);
+    padding: 5px;
+    text-decoration: none;
+    padding: 5px;
+    top: 30px;
+    transition: 0,5s all;
+    border-radius: 20px;
+    border:2px black solid;
+    text-shadow: rgba(0, 0, 0, 0.144);
+    position: relative;}
+  
+a:hover {background-color:black ;
+        color:wheat;
+        border:5px blue solid ;
+        border-radius: 30px;
+        transition: 0,5s all;
+}
+  
+a:active {color: rgb(0, 140, 255);}
+  
+a:visited {color:white;}
+  
+a:focus-visible {color:black}
+
+*{background-color: rgb(57, 68, 170);
+    margin:0 auto;
+   }
+
+body{ height: 1200px;
+}
+
+h1{margin-top: 30px;
+   padding:5px;}
+ 
+h2 {color:darkblue;
+}
+
+#wa {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:small;
+    border-collapse: collapse;
+    margin-left: auto; margin-right: auto; width: 50%;margin-top: 20px;
+}
+#wa td, #wa th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align:center;
+}
+#wa th{
+      background-color: darkblue;
+      color: white;}
+#wa tr:hover {background-color: #ddd}
+
+.hijo { 
+position: relative;
+background-color: blueviolet;
+text-align: center;
+align-content: center;
+width:150px;
+background:linear-gradient(30deg, crimson,sienna, royalblue, indianred, purple);
+padding: 10px;
+height: 50px;
+margin-top: 80px;
+bottom: 50px;
+border-radius:40px;
+font-family: 'calibri';
+color: white;
+box-shadow: 7px 13px 37px #000;
+display:grid;
+grid-template-rows: auto auto auto;
+align-items: center;
+transition: 0,5s all;
+
+
+}
+.hijo :hover {
+background-color:black ;
+color:wheat;
+border:5px blue solid ;
+border-radius: 30px;
+transition: 0,5s all;
+}
+
+.hija{ 
+display:grid;
+grid-template-rows: auto auto auto;
+height:50px;
+border-radius:40px;
+flex-wrap: nowrap;
+
+}
+.padre{display: grid;
+       grid-template-columns: auto auto auto;
+       flex-wrap: nowrap;
+       
+}
+    </style>
+</head>
+<body>
+    
+    <h1 style="color:darkblue;text-align: center">Personal en Planta Departamento de Ventas </h1>
+    <table id= "wa">
+    <thead>
+        <tr>
+        <th>Id</th>
+        <th>nombre</th>
+        <th>fecha_ingreso</th>
+        <th>zona</th>
+        <th>ventas</th>
+        <th>comisiones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in data %}
+        <tr>
+        <td> {{ row [0] }}</td>
+        <td> {{ row [1] }}</td>
+        <td> {{ row [2] }}</td>
+        <td> {{ row [3] }}</td>
+        <td> {{ row [4] }}</td>
+        <td> {{ row [5] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+         
+        <h2  style="text-align: center; padding: 20px;margin-top: 10px;">Agregar un Vendedor</h2>
+   
+          <form  style="display: block;text-align: center;" action="/create" method="post">
+   <input type="text" name="nombre" placeholder="nombre">
+   <input type="text" name="fecha_ing" placeholder="fecha_ing">
+   <input type="text" name="zona" placeholder="zona">
+   <input type="text" name="total_ventas" placeholder="total_ventas">
+   <input type="text" name="comisiones" placeholder="comisiones">
+
+
+   <input type="submit" value="Create">
+   </form>
+
+          <h2 style="text-align: center; padding: 5px;margin-top: 20px;"> Update/Delete datos </h2>
+    
+          <table>
+    <thead style="display:block">
+        <tr>
+            <th>ID</th>
+            <th width="45%"></th>
+            <th width="30%"></th>
+            <th width="15%"></th>
+            <th width="15%"></th>
+            <th width="15%"></th>
+            <th width="15%"></th>
+        </tr>
+    </thead>
+    <tbody> 
+        {% for row in data %}
+        <tr>
+        <td>
+            <form action="/update" method="post">
+            <label> {{ row[0] }} </label>
+            <input type="hidden" name="id" value="{{ row[0] }}">  
+            <input type="text" name="nombre" size="15" value="{{ row[1] }}">
+            <input type="text" name="fecha_ing" size="15" value="{{ row[2] }}">
+            <input type="text" name="zona" size="5" value="{{ row[3] }}">
+            <input type="text" name="total_ventas" size="15" value="{{ row[4] }}">
+            <input type="text" name="comisiones" size="5" value="{{ row[5] }}">
+            <input type="submit" value="Update">
+            </form>
+        </td>
+        <td>
+            <form action="/delete" method="post">
+            <input type="hidden" name="id" value="{{ row[0] }}">
+            <input type="submit" value="Delete">
+            </form>
+        </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+
+     <h2  style="text-align: center; margin-top: 150px;font-size: large;">Consultas</h2>
+          <div class="padre">
+                <form  class="hijo" action="/query" method="post">
+                <input class="hija" type="submit" value=" Ingresos 2024">
+                </form>
+                
+                <form  class="hijo" action="/query1" method="post">
+                <input class="hija" type="submit" value="Listado por Zona">
+                </form>
+                
+                <form  class="hijo" action="/query2" method="post">
+                <input class="hija" type="submit" value="Comisiones Mayores">
+                </form>
+                
+                <form  class="hijo" action="/query3" method="post">
+                <input class="hija" type="submit" value="Ventas ">
+                </form>
+               
+                <form  class="hijo" action="/query4" method="post">
+                <input class="hija" type="submit" value="Sueldos > 500000">
+                </form>
+               
+                <form  class="hijo"action="/query5" method="post">
+                <input class="hija" type="submit" value="Orden por Oficinas">
+                </form>
+                
+                <form  class="hijo" action="/query6" method="post">
+                <input class="hija" type="submit" value="Orden por Oficinas">
+                </form>
+               
+                <form  class="hijo" action="/query7" method="post">
+                <input class="hija" type="submit" value="Sueldos > 500000">
+                </form>
+                
+                <form  class="hijo" action="/query8" method="post">
+                <input class="hija" type="submit" value="Orden por Oficinas">
+                </form>
+            </div>   
+</body>
+</html>
