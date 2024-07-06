@@ -138,6 +138,8 @@ input {font-weight: bolder;}
     <table id= "wa">
     <thead>
         <tr>
+        <th>zona_ventas</th>
+        <th>suma_ventas</th>   
         <th>Id</th>
         <th>nombre</th>
         <th>fecha_ingreso</th>
@@ -155,6 +157,8 @@ input {font-weight: bolder;}
         <td> {{ row [3] }}</td>
         <td> {{ row [4] }}</td>
         <td> {{ row [5] }}</td>
+        <td> {{ row [6] }}</td>
+        <td> {{ row [7] }}</td>
         </tr>
         {% endfor %}
     </tbody>
@@ -225,7 +229,7 @@ input {font-weight: bolder;}
                 </form>
                 
                 <form  class="hijo" action="/query2" method="post">
-                <input class="hija" type="submit" value="Comisiones Mayores">
+                <input class="hija" type="submit" value="Promedio ventas-zona">
                 </form>
                 
                 <form  class="hijo" action="/query3" method="post">
@@ -249,7 +253,7 @@ input {font-weight: bolder;}
                 </form>
                 
                 <form  class="hijo" action="/query8" method="post">
-                <input class="hija" type="submit" value="Ventas < 10000 ">
+                <input class="hija" type="submit" value="Ventas por Zona">
                 </form>
             </div>   
 </body>

@@ -87,7 +87,7 @@ def query2():
     conn=db_conn()
     cur=conn.cursor()
     cur.execute(
-        '''SELECT * FROM oficina_ventas  WHERE comisiones  > 10000 ''')
+        '''SELECT  zona ,AVG(total_ventas)  FROM oficina_ventas group by zona ''')
     data=cur.fetchall()
     conn.commit()
     return render_template ('index.html',data=data)
@@ -147,12 +147,11 @@ def query7():
 def query8():
     conn=db_conn()
     cur=conn.cursor()
-    cur.execute(
-        '''SELECT nombre, max(total_ventas) as ventas_netas FROM oficina_ventas group by nombre ''')
+    cur.execute('''SELECT  zona ,sum(total_ventas)  FROM oficina_ventas group by zona ''')
     data=cur.fetchall()
     conn.commit()
     return render_template ('index.html',data=data)
-
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
