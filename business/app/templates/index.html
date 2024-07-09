@@ -63,7 +63,7 @@ h2 {color:darkblue;
     text-align:center;
 }
 #wa th{
-      background-color: darkblue;
+      background-color: blue;
       color: white;}
 #wa tr:hover {background-color: #ddd}
 
@@ -138,14 +138,15 @@ input {font-weight: bolder;}
     <table id= "wa">
     <thead>
         <tr>
-        <th>zona_ventas</th>
-        <th>suma_ventas</th>   
+        <th>Zona_Ventas</th>
+        <th>Sum/prom_Vent</th>   
+        <th>Sum/prom_Com</th> 
         <th>Id</th>
-        <th>nombre</th>
-        <th>fecha_ingreso</th>
-        <th>zona</th>
-        <th>ventas</th>
-        <th>comisiones</th>
+        <th>Nombre</th>
+        <th>Fcha_ingreso</th>
+        <th>Zona</th>
+        <th>Ventas</th>
+        <th>Comisiones</th>
         </tr>
     </thead>
     <tbody>
@@ -159,6 +160,7 @@ input {font-weight: bolder;}
         <td> {{ row [5] }}</td>
         <td> {{ row [6] }}</td>
         <td> {{ row [7] }}</td>
+        <td> {{ row [8] }}</td>
         </tr>
         {% endfor %}
     </tbody>
@@ -172,8 +174,6 @@ input {font-weight: bolder;}
    <input type="text" name="zona" placeholder="zona">
    <input type="text" name="total_ventas" placeholder="total_ventas">
    <input type="text" name="comisiones" placeholder="comisiones">
-
-
    <input type="submit" value="Create">
    </form>
 
@@ -182,7 +182,10 @@ input {font-weight: bolder;}
           <table>
     <thead style="display:block">
         <tr>
-            <th>ID</th>
+            <th></th>
+            <th width="45%"> </th>
+            <th width="45%"> </th>
+            <th width="45%"></th>
             <th width="45%"></th>
             <th width="30%"></th>
             <th width="15%"></th>
@@ -196,19 +199,22 @@ input {font-weight: bolder;}
         <tr>
         <td>
             <form action="/update" method="post">
-            <label> {{ row[0] }} </label>
-            <input type="hidden" name="id" value="{{ row[0] }}">  
-            <input type="text" name="nombre" size="15" value="{{ row[1] }}">
-            <input type="text" name="fecha_ing" size="15" value="{{ row[2] }}">
-            <input type="text" name="zona" size="5" value="{{ row[3] }}">
-            <input type="text" name="total_ventas" size="15" value="{{ row[4] }}">
-            <input type="text" name="comisiones" size="5" value="{{ row[5] }}">
+            <label> {{ row[] }} </label>
+            <input type="text" name="zona_ventas" size="15" value="{{ row[0] }}">
+            <input type="text" name="suma_ventas" size="15" value="{{ row[1] }}">
+            <input type="text" name="suma_comisiones" size="15" value="{{ row[2] }}">
+            <input type="hidden" name="id" value="{{ row[3] }}">  
+            <input type="text" name="nombre" size="15" value="{{ row[4] }}">
+            <input type="text" name="fecha_ing" size="15" value="{{ row[5] }}">
+            <input type="text" name="zona" size="5" value="{{ row[6] }}">
+            <input type="text" name="total_ventas" size="15" value="{{ row[7] }}">
+            <input type="text" name="comisiones" size="5" value="{{ row[8] }}">
             <input type="submit" value="Update">
             </form>
         </td>
         <td>
             <form action="/delete" method="post">
-            <input type="hidden" name="id" value="{{ row[0] }}">
+            <input type="hidden" name="id" value="{{ row[3] }}">
             <input type="submit" value="Delete">
             </form>
         </td>
@@ -229,7 +235,7 @@ input {font-weight: bolder;}
                 </form>
                 
                 <form  class="hijo" action="/query2" method="post">
-                <input class="hija" type="submit" value="Promedio ventas-zona">
+                <input class="hija" type="submit" value="Prom/vent/zona">
                 </form>
                 
                 <form  class="hijo" action="/query3" method="post">
@@ -249,11 +255,11 @@ input {font-weight: bolder;}
                 </form>
                
                 <form  class="hijo" action="/query7" method="post">
-                <input class="hija" type="submit" value="Venta > 100000">
+                <input class="hija" type="submit" value="Sum_Vent/Com">
                 </form>
                 
                 <form  class="hijo" action="/query8" method="post">
-                <input class="hija" type="submit" value="Ventas por Zona">
+                <input class="hija" type="submit" value="Prom/com/zona">
                 </form>
             </div>   
 </body>

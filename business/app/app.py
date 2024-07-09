@@ -87,7 +87,7 @@ def query2():
     conn=db_conn()
     cur=conn.cursor()
     cur.execute(
-        '''SELECT  zona ,AVG(total_ventas)  FROM oficina_ventas group by zona ''')
+        '''SELECT  zona ,ROUND(AVG(total_ventas),2)  FROM oficina_ventas group by zona ''')
     data=cur.fetchall()
     conn.commit()
     return render_template ('index.html',data=data)
@@ -138,7 +138,7 @@ def query7():
     conn=db_conn()
     cur=conn.cursor()
     cur.execute(
-        '''SELECT * FROM oficina_ventas WHERE total_ventas > 100000 ''')
+        '''SELECT  zona , sum(total_ventas),sum(comisiones) FROM oficina_ventas group by zona ''')
     data=cur.fetchall()
     conn.commit()
     return render_template ('index.html',data=data)
@@ -147,7 +147,7 @@ def query7():
 def query8():
     conn=db_conn()
     cur=conn.cursor()
-    cur.execute('''SELECT  zona ,sum(total_ventas)  FROM oficina_ventas group by zona ''')
+    cur.execute('''SELECT  zona ,suma_ventas,ROUND(AVG(comisiones),2)  FROM oficina_ventas group by zona,suma_ventas ''')
     data=cur.fetchall()
     conn.commit()
     return render_template ('index.html',data=data)
